@@ -6,7 +6,7 @@ mvn package
 
 ===============_RUN_===============
 
-java -jar spring-0.01-SNAPSHOT.jar
+java -jar target/spring-0.0.1-SNAPSHOT.jar
 
 
 
