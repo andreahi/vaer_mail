@@ -1,3 +1,7 @@
+Spring app that sends weather forecast every hour, to all registred e-mails.
+
+
+
 ==============_BUILD_==============
 
 mvn package
