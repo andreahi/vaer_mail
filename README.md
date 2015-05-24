@@ -22,7 +22,9 @@ mvn exec:java
 ==============_USAGE_==============
 
 add new email:
+
 localhost:8080/add?mail=email@test.com
 
 get email from id:
+
 localhost:8080/get?id=0
