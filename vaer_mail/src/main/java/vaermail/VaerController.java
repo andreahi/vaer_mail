@@ -53,5 +53,17 @@ public class VaerController {
 
 		return new ResponseEntity<MailInfo>(mailingList.get(id), HttpStatus.OK);
 	}
+	
+	/*
+	 * return the mail with the given id and delete it from the mailing list
+	 */
+	@RequestMapping("/del")
+	public ResponseEntity<MailInfo> del(@RequestParam int id) {
+	
+		if(id >= mailingList.size())
+			return new ResponseEntity<MailInfo>(HttpStatus.BAD_REQUEST);
+
+		return new ResponseEntity<MailInfo>(mailingList.del(id), HttpStatus.OK);
+	}
 
 }

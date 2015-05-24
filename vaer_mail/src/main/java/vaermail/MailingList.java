@@ -34,4 +34,18 @@ public class MailingList {
 		 return mailList.size();
 	 }
 
+	public MailInfo del(int id) {
+		if(id > mailList.size())
+			return new MailInfo("empty");
+		int i = 0;
+		for (MailInfo mi : mailList) {
+			if(i++ == id){
+				mailList.remove(mi);
+				return mi;
+			}
+				
+		}
+		return new MailInfo("empty");
+	}
+
 }
