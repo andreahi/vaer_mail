@@ -1,4 +1,4 @@
-Spring app that sends weather forecast every hour, to all registred e-mails.
+Spring app that sends weather forecast every hour, to all registered e-mails.
 
 
 
