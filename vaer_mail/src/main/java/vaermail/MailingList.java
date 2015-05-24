@@ -1,7 +1,5 @@
 package vaermail;
 
-
-
 import java.util.concurrent.ConcurrentLinkedDeque;
 import org.springframework.stereotype.Service;
 

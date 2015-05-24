@@ -19,6 +19,7 @@ public class WeatherRetriever {
 	private final static String  WINDSPEED ="windSpeed";
 	private final static String  TEMPERATURE ="temperature";
 
+	// create a formated forecast message
 	private static String createMessage(String cloud, float precipitation, int temperature,  String windDirection, String windSpeed){
 		String weatherMsg = "";
 		weatherMsg+=cloud+"\n";
@@ -29,45 +30,41 @@ public class WeatherRetriever {
 		return weatherMsg;
 	}
 	
+	//get weather forecase from the url
 	public static String get_vaer(String url) throws MalformedURLException, SAXException, IOException, ParserConfigurationException{
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setNamespaceAware(true);
 		Document document = factory.newDocumentBuilder().parse(new URL(url).openStream());
-		NodeList movieList = document.getElementsByTagName("tabular");
+		NodeList nodeList = document.getElementsByTagName("tabular");//get element where the weather data reside
 
-		for (int i = 0; i < movieList.getLength(); i++) {
-			Node node = movieList.item(i);
-			Element node2  = (Element)node.getChildNodes().item(1);
-			NodeList nl = node2.getChildNodes();
-			int temperature  = -1;
-			String windDirection  = "NaN";
-			String windSpeed = "NaN";
-			float precipitation = -1;
-			String cloud = "NaN";
-			for(int j = 0; j < nl.getLength(); j++){
-				if(nl.item(j).getNodeType() == Node.ELEMENT_NODE){
-					Element e = (Element)nl.item(j);
-					if(e.getLocalName().equals("symbol"))
-						cloud = e.getAttribute("name").trim();
+		Node node = nodeList.item(0);
+		Element weatherElement  = (Element)node.getChildNodes().item(1);
+		NodeList weatherdata = weatherElement.getChildNodes();
+		int temperature  = -1;
+		String windDirection  = "NaN";
+		String windSpeed = "NaN";
+		float precipitation = -1;
+		String cloud = "NaN";
+		for(int j = 0; j < weatherdata.getLength(); j++){ //loop trough the weather data looking for element node
+			if(weatherdata.item(j).getNodeType() == Node.ELEMENT_NODE){
+				Element e = (Element)weatherdata.item(j);
+				if(e.getLocalName().equals("symbol"))
+					cloud = e.getAttribute("name").trim();
 
-					else if(e.getLocalName().equals(PRECIPITATION))
-						precipitation = Float.parseFloat(e.getAttribute("value").trim());
+				else if(e.getLocalName().equals(PRECIPITATION))
+					precipitation = Float.parseFloat(e.getAttribute("value").trim());
 
-					else if(e.getLocalName().equals(WINDDIRECTION))
-						windDirection = e.getAttribute("name").trim();
+				else if(e.getLocalName().equals(WINDDIRECTION))
+					windDirection = e.getAttribute("name").trim();
 
-					else if(e.getLocalName().equals(WINDSPEED))
-						windSpeed = e.getAttribute("name").trim();
+				else if(e.getLocalName().equals(WINDSPEED))
+					windSpeed = e.getAttribute("name").trim();
 
-					else if(e.getLocalName().equals(TEMPERATURE))
-						temperature = Integer.parseInt(e.getAttribute("value").trim());
-				}
+				else if(e.getLocalName().equals(TEMPERATURE))
+					temperature = Integer.parseInt(e.getAttribute("value").trim());
 			}
-			return createMessage(cloud, precipitation, temperature, windDirection, windSpeed);
-			
 		}
-
-		return "";
+		return createMessage(cloud, precipitation, temperature, windDirection, windSpeed);
 	}
 }
