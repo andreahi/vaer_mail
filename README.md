@@ -19,12 +19,18 @@ java -jar target/spring-0.0.1-SNAPSHOT.jar
 mvn exec:java
 
 
+
 ==============_USAGE_==============
 
 add new email:
 
 localhost:8080/add?mail=email@test.com
 
-get email from id:
+get email by id:
 
 localhost:8080/get?id=0
+
+delete email by id:
+
+localhost:8080/del?id=0
+
