@@ -14,9 +14,6 @@ java -jar target/spring-0.0.1-SNAPSHOT.jar
 
 
 
-==========_BUILD_and_RUN_==========
-
-mvn exec:java
 
 
 
