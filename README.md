@@ -2,13 +2,13 @@ Spring app that sends weather forecast every hour, to all registered e-mails.
 
 
 
-==============_BUILD_==============
+### BUILD
 
 mvn package
 
 
 
-===============_RUN_===============
+### RUN
 
 java -jar target/spring-0.0.1-SNAPSHOT.jar
 
@@ -17,7 +17,7 @@ java -jar target/spring-0.0.1-SNAPSHOT.jar
 
 
 
-==============_USAGE_==============
+### USAGE
 
 add new email:
 
